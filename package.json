@@ -1,13 +1,32 @@
 {
   "name": "expo-nfc-starter",
+  "description": "NFC in Expo development builds without the confusion.",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "keywords": [
+    "expo",
+    "react-native",
+    "nfc",
+    "ndef",
+    "expo-dev-client",
+    "expo-development-build",
+    "react-native-nfc-manager",
+    "android",
+    "ios",
+    "web-nfc",
+    "typescript",
+    "starter-template"
+  ],
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --dev-client",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "start:android": "expo start --dev-client --android",
+    "start:ios": "expo start --dev-client --ios",
     "web": "expo start --web",
+    "eas:android": "eas build --profile development:android --platform android",
+    "eas:ios": "eas build --profile development:ios --platform ios",
     "lint": "expo lint"
   },
   "dependencies": {

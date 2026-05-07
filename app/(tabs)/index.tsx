@@ -1,98 +1,118 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
+import { NfcSupportCard } from '@/components/nfc-support-card';
+import { NfcBulletList, NfcScreen, NfcSection } from '@/components/nfc-ui';
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
+  const colorScheme = useColorScheme() ?? 'light';
+  const theme = Colors[colorScheme];
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+  return (
+    <NfcScreen>
+      <View style={styles.header}>
+        <ThemedText type="title">Expo NFC Starter</ThemedText>
+        <ThemedText style={styles.subtitle}>
+          A practical path through the Expo NFC confusion: dev builds, real tags, no Expo Go.
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
+      </View>
+
+      <NfcSection>
+        <ThemedText type="subtitle">The pain</ThemedText>
         <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+          NFC looks like it should be a quick Expo feature, then Expo Go gets in the way.
+          Native NFC needs a custom build, platform-specific config, physical devices, and real
+          tags.
         </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </NfcSection>
+
+      <NfcSection>
+        <ThemedText type="subtitle">The solution</ThemedText>
+        <ThemedText>
+          This starter uses Expo development builds with `react-native-nfc-manager`, keeps the
+          public NFC API small, and makes the unsupported paths explicit instead of pretending every
+          platform behaves the same.
+        </ThemedText>
+      </NfcSection>
+
+      <NfcSupportCard />
+
+      <NfcSection>
+        <ThemedText type="subtitle">Start here</ThemedText>
+        <View style={styles.links}>
+          <Pressable accessibilityRole="button" onPress={() => router.push('/scan')}>
+            <ThemedText style={[styles.link, { color: theme.tint }]}>Scan an NDEF tag</ThemedText>
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={() => router.push('/preflight' as never)}>
+            <ThemedText style={[styles.link, { color: theme.tint }]}>Run preflight checks</ThemedText>
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={() => router.push('/write')}>
+            <ThemedText style={[styles.link, { color: theme.tint }]}>Write a test NDEF tag</ThemedText>
+          </Pressable>
+          <Pressable accessibilityRole="button" onPress={() => router.push('/troubleshooting')}>
+            <ThemedText style={[styles.link, { color: theme.tint }]}>Open troubleshooting</ThemedText>
+          </Pressable>
+        </View>
+      </NfcSection>
+
+      <NfcSection>
+        <ThemedText type="subtitle">Why it helps</ThemedText>
+        <NfcBulletList
+          items={[
+            'It starts from development builds, which is the correct Expo path for native NFC.',
+            'It says no to Expo Go up front.',
+            'It proves NDEF scan/write before you add business logic.',
+            'It gives Android, iOS, and web separate expectations.',
+            'It keeps rebuild rules visible so native config changes are not missed.',
+          ]}
+        />
+      </NfcSection>
+
+      <NfcSection>
+        <ThemedText type="subtitle">Setup flow</ThemedText>
+        <NfcBulletList
+          items={[
+            'Install dependencies with Bun.',
+            'Keep the react-native-nfc-manager config plugin in app.json.',
+            'Build an Expo development client after native config changes.',
+            'Run on a real Android device or NFC-capable iPhone.',
+            'Test with real NDEF tags.',
+          ]}
+        />
+      </NfcSection>
+
+      <NfcSection>
+        <ThemedText type="subtitle">Platform limits</ThemedText>
+        <NfcBulletList
+          items={[
+            'Android and iOS use native NFC through react-native-nfc-manager.',
+            'Web only works where the browser exposes NDEFReader.',
+            'Web NFC requires HTTPS except localhost and a direct user gesture.',
+            'This starter is NDEF-only; advanced tag technologies are out of scope.',
+          ]}
+        />
+      </NfcSection>
+    </NfcScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  header: {
     gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  subtitle: {
+    opacity: 0.78,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  links: {
+    gap: 12,
+  },
+  link: {
+    fontWeight: '700',
+    minHeight: 32,
+    textAlignVertical: 'center',
   },
 });
