@@ -1,0 +1,77 @@
+name: NFC support problem
+description: Report a runtime, build, scan, write, or support-detection problem.
+title: "[NFC support]: "
+labels: ["nfc", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying the starter. NFC bugs are usually platform-specific, so device/build details help a lot.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Android
+        - iOS
+        - Web NFC
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: "Example: Pixel 8, Samsung Galaxy S23, iPhone 14 Pro."
+      placeholder: Pixel 8
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: Android 15 / iOS 18.4
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - Expo development build / custom dev client
+        - EAS development build
+        - Expo Go
+        - Web browser
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: support-reason
+    attributes:
+      label: Support result or reason
+      description: Copy the app's support status or error reason if available.
+      placeholder: supported / requires-dev-build / unavailable / permission-denied
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Tell us what you expected and what happened instead.
+      placeholder: I tapped Scan NDEF, scanned a tag, and...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Build the dev client with ...
+        2. Open the Check tab
+        3. Tap Scan NDEF
+        4. Scan ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste Metro/native logs, screenshots, or exact error text.
+      render: text

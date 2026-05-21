@@ -236,6 +236,9 @@ pnpm start
 
 Open the app in the development build, tap `Scan NDEF`, scan a real NDEF tag, then tap `Write Test NDEF` with a writable NDEF tag.
 
+> [!NOTE]
+> Tried it on a real device? Please open a device test issue with your phone model, OS version, and tag type. Working reports are just as useful as bug reports.
+
 ### 6. Optionally test the web fallback
 
 ```bash

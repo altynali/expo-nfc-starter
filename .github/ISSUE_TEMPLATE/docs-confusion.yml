@@ -1,0 +1,42 @@
+name: Docs confusion
+description: Tell us where the README or docs were unclear.
+title: "[Docs]: "
+labels: ["docs", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If something was confusing, that is useful feedback. NFC setup has too many sharp edges, and the docs should make the path obvious.
+  - type: dropdown
+    id: doc-area
+    attributes:
+      label: Where did you get stuck?
+      options:
+        - README quick start
+        - Development build setup
+        - Android docs
+        - iOS docs
+        - Web NFC docs
+        - Rebuild rules
+        - Troubleshooting
+        - Copying into another app
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: confusing-part
+    attributes:
+      label: What was confusing?
+      placeholder: I expected the docs to explain..., but I could not tell...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What would have helped?
+      placeholder: A command, screenshot, example error, platform note, or clearer wording.
+  - type: input
+    id: page
+    attributes:
+      label: Page or section
+      placeholder: README Fast Path / docs/android.md / docs/troubleshooting.md

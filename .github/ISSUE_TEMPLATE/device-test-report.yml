@@ -1,0 +1,61 @@
+name: Device test report
+description: Share whether the starter worked on your real device and NFC tag.
+title: "[Device test]: "
+labels: ["device-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Device reports are extremely useful, even when everything works. They help other people know what hardware has been tried.
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Scan and write both worked
+        - Scan worked, write failed
+        - Write worked, scan failed
+        - Support check failed
+        - Could not build/run the dev client
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Android
+        - iOS
+        - Web NFC
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      placeholder: Pixel 8 / iPhone 14 Pro
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: Android 15 / iOS 18.4
+    validations:
+      required: true
+  - type: input
+    id: tag
+    attributes:
+      label: NFC tag type
+      description: If you know it, include the tag family and capacity.
+      placeholder: NTAG213 / NTAG215 / unknown NDEF tag
+  - type: input
+    id: build-command
+    attributes:
+      label: Build command
+      placeholder: bun run android / eas build --profile development --platform ios
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Any setup detail, permission prompt, delay, or odd behavior worth recording.
