@@ -42,6 +42,49 @@ import { formatNfcError, getSupport, scanNdef, writeNdef } from '@/src/nfc';
 
 Start with `getSupport()` before scan/write.
 
+### Check Support
+
+```ts
+import { getSupport } from '@/src/nfc';
+
+const support = await getSupport();
+
+if (!support.isSupported) {
+  console.log(`NFC unavailable: ${support.reason}`);
+}
+```
+
+### Scan One NDEF Tag
+
+```ts
+import { formatNfcError, scanNdef } from '@/src/nfc';
+
+try {
+  const tag = await scanNdef();
+  console.log(tag.records);
+} catch (error) {
+  console.warn(formatNfcError(error));
+}
+```
+
+### Write A Text Record
+
+```ts
+import { formatNfcError, writeNdef } from '@/src/nfc';
+
+try {
+  await writeNdef([
+    {
+      recordType: 'text',
+      data: 'Hello from Expo NFC Starter',
+      lang: 'en',
+    },
+  ]);
+} catch (error) {
+  console.warn(formatNfcError(error));
+}
+```
+
 ## 5. Rebuild
 
 | Bun | npm | Yarn | pnpm |
