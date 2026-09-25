@@ -1,4 +1,0 @@
-interface:
-  display_name: "Expo NFC Dev Builds"
-  short_description: "Build NDEF NFC flows in Expo dev clients"
-  default_prompt: "Use $expo-nfc-dev-builds to add or debug NDEF NFC support in an Expo development build."
