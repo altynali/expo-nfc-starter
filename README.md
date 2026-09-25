@@ -9,7 +9,7 @@ NFC in Expo development builds without the confusion.
 [![Web NFC](https://img.shields.io/badge/Web%20NFC-limited%20fallback-f59f00)](docs/web.md)
 [![Android](https://img.shields.io/badge/Android-native%20NFC-3ddc84?logo=android&logoColor=white)](docs/android.md)
 [![iOS](https://img.shields.io/badge/iOS-Core%20NFC-111111?logo=apple&logoColor=white)](docs/ios.md)
-[![Template](https://img.shields.io/badge/Starter-template-7950f2)](#how-to-know-if-people-are-using-it)
+[![Template](https://img.shields.io/badge/Starter-template-7950f2)](#why-this-is-a-good-starting-point)
 
 NDEF scan/write for Expo development builds using `react-native-nfc-manager`, with a limited Web NFC fallback for browsers that support `NDEFReader`.
 
@@ -293,39 +293,9 @@ If NFC suddenly reports `requires-dev-build` after you changed config, rebuild f
 | Validate the starter | [Validation checklist](docs/validation.md) |
 | Debug common problems | [Troubleshooting](docs/troubleshooting.md) |
 
-## GitHub Discovery
+## License
 
-Suggested repository description:
-
-```text
-NFC in Expo development builds without the confusion.
-```
-
-Suggested GitHub topics:
-
-```text
-expo react-native nfc ndef expo-dev-client expo-development-build react-native-nfc-manager android ios web-nfc typescript starter-template
-```
-
-## How To Know If People Are Using It
-
-GitHub will not tell you every person who copied the code, but it does give enough signals to see whether the starter is getting traction.
-
-| Signal | Where to check | What it tells you |
-| --- | --- | --- |
-| Views | Repository `Insights` -> `Traffic` | People are opening the repo or docs. |
-| Unique visitors | Repository `Insights` -> `Traffic` | Rough audience size, not just repeat refreshes. |
-| Clones | Repository `Insights` -> `Traffic` | People or automation are pulling the code locally. |
-| Referrers | Repository `Insights` -> `Traffic` | Where readers are coming from, such as search, blogs, social posts, or docs. |
-| Popular content | Repository `Insights` -> `Traffic` | Which README/docs pages people care about most. |
-| Stars and forks | Repository main page | Public interest and people making their own copies. |
-| Issues and discussions | Repository `Issues` / `Discussions` | Real pain points, requests, and proof that people are trying it. |
-| Backlinks/search | GitHub search, web search, npm/package mentions | Places where people reference the starter outside your repo. |
-
-> [!NOTE]
-> GitHub traffic is a short rolling window, so check it regularly or export it with the GitHub traffic API if you want long-term history.
-
-For a starter/template, the best early signal is not stars. It is someone opening an issue that says, "I tried this on my phone and..." because that means the repo reached the exact developer it was built for.
+MIT
 
 ## Scope
 
